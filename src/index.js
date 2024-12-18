@@ -6,10 +6,17 @@ class Todo {
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
+    this.completed = false;
     this.list = list;
+  }
+  // set setCompleted(value) {
+  //   this.completed = value;
+  // }
+  logTitle() {
+    console.log(this.title);
   }
 }
 
-const task = new Todo("Lavar la loza", "", "15-12-24", "low", "Odin");
+let task = new Todo("Lavar la loza", "", "15-12-24", "low", "Odin");
 
-console.log(task)
+// console.log(task)
