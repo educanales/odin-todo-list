@@ -1,6 +1,9 @@
-function showTodo(array) {
+import { myTodos } from "./index.js";
+
+function showTodo() {
   const main = document.querySelector("main");
-  array.forEach((item, i) => {
+  main.replaceChildren();
+  myTodos.forEach((item, i) => {
     item.id = i;
     const todoCard = document.createElement("div");
     todoCard.className = "todo-card";
@@ -11,9 +14,9 @@ function showTodo(array) {
     const editBtn = document.createElement("button");
     const deleteBtn = document.createElement("button");
 
-    // deleteBtn.addEventListener("click", () => {
-      
-    // });
+    deleteBtn.addEventListener("click", () => {
+      deleteTodo(item.id);
+    });
 
     main.appendChild(todoCard);
     todoCard.append(checkbox, label, editBtn, deleteBtn);
@@ -22,6 +25,13 @@ function showTodo(array) {
     deleteBtn.textContent = "Delete";
 
   });
+  
 }
+
+function deleteTodo(id) {
+  myTodos.splice(id, 1);
+  showTodo();
+}
+
 
 export { showTodo };
