@@ -3,6 +3,7 @@ function showTodo(array) {
   array.forEach((item, i) => {
     item.id = i;
     const todoCard = document.createElement("div");
+    todoCard.className = "todo-card";
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     // checkbox.name = `${item.title}`;
