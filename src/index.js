@@ -1,4 +1,5 @@
 import "./styles.css";
+import { showTodo } from "./dom.js";
 
 class Todo {
   constructor(title, description, dueDate, priority, list) {
@@ -24,8 +25,12 @@ class Todo {
 
 let task = new Todo("Lavar la loza", "", "15-12-24", "low", "Odin");
 
+const myTodos = [task];
+
 task.logTitle();
 task.logCompleted();
 
 task.setCompleted(true);
 task.logCompleted();
+
+showTodo(myTodos);
