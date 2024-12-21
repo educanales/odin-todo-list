@@ -33,4 +33,6 @@ task.logCompleted();
 task.setCompleted(true);
 task.logCompleted();
 
-showTodo(myTodos);
+showTodo();
+
+export { myTodos };
