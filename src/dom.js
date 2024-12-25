@@ -1,8 +1,8 @@
 import { myTodos } from "./index.js";
 
 function showTodo() {
-  const main = document.querySelector("main");
-  main.replaceChildren();
+  const todoContainer = document.querySelector(".todo-container");
+  todoContainer.replaceChildren();
   myTodos.forEach((item, i) => {
     item.id = i;
     const todoCard = document.createElement("div");
@@ -18,7 +18,7 @@ function showTodo() {
       deleteTodo(item.id);
     });
 
-    main.appendChild(todoCard);
+    todoContainer.appendChild(todoCard);
     todoCard.append(checkbox, label, editBtn, deleteBtn);
     label.textContent = `${item.title}`;
     editBtn.textContent = "Edit";
