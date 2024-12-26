@@ -35,4 +35,4 @@ task.logCompleted();
 
 showTodo();
 
-export { myTodos };
+export { myTodos, Todo };
