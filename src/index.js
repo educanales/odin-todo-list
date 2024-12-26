@@ -23,7 +23,7 @@ class Todo {
   }
 }
 
-let task = new Todo("Lavar la loza", "", "15-12-24", "low", "Odin");
+let task = new Todo("Lavar la loza", "", "2024-12-15", "low", "Odin");
 
 const myTodos = [task];
 
