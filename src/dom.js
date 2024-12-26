@@ -1,4 +1,4 @@
-import { myTodos } from "./index.js";
+import { myTodos, Todo } from "./index.js";
 
 function showTodo() {
   const todoContainer = document.querySelector(".todo-container");
@@ -23,9 +23,18 @@ function showTodo() {
     label.textContent = `${item.title}`;
     editBtn.textContent = "Edit";
     deleteBtn.textContent = "Delete";
-
   });
-  
+
+  const modal = document.querySelector("dialog");
+  const addNewTodo = document.querySelector(".add-new-todo");
+  const cancelBtn = document.querySelector(".cancel-btn");
+  const submitBtn = document.querySelector(".submit-btn");
+  const form = document.forms["todo-form"];
+
+  addNewTodo.addEventListener("click", () => modal.showModal());
+  cancelBtn.addEventListener("click", () => modal.close());
+  submitBtn.addEventListener("click", () => modal.close());
+  form.addEventListener("submit", addTodo);
 }
 
 function deleteTodo(id) {
@@ -33,5 +42,22 @@ function deleteTodo(id) {
   showTodo();
 }
 
+function addTodo(event) {
+  event.preventDefault();
+
+  const newTodo = new Todo(
+    title.value,
+    description.value,
+    dueDate.value,
+    priority.value
+  );
+  
+  myTodos.push(newTodo);
+  title.value = "";
+  description.value = "";
+  dueDate.value = "";
+  priority.value = "";
+  showTodo();
+}
 
 export { showTodo };
