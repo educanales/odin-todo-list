@@ -14,6 +14,11 @@ function showTodo() {
     const editBtn = document.createElement("button");
     const deleteBtn = document.createElement("button");
 
+    checkbox.addEventListener("click", () => {
+      checkbox.toggleAttribute("checked");
+      label.classList.toggle("checked");
+    });
+
     deleteBtn.addEventListener("click", () => {
       deleteTodo(item.id);
     });
@@ -51,12 +56,15 @@ function addTodo(event) {
     dueDate.value,
     priority.value
   );
-  
+
   myTodos.push(newTodo);
   title.value = "";
   description.value = "";
   dueDate.value = "";
   priority.value = "";
+  
+  console.log(myTodos);
+
   showTodo();
 }
 
