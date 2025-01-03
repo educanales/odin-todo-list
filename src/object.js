@@ -25,4 +25,4 @@ let task = new Todo("Lavar la loza", "", "2024-12-15", "low", "Odin");
 const myTodos = [task];
 
 
-export { myTodos, Todo, task };
+export { myTodos, Todo };
