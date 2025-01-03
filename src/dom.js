@@ -1,4 +1,4 @@
-import { myTodos, Todo } from "./index.js";
+import { myTodos, Todo } from "./object.js";
 
 function showTodo() {
   const todoContainer = document.querySelector(".todo-container");
