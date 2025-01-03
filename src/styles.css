@@ -55,3 +55,7 @@ body {
 .checked {
   text-decoration: line-through;
 }
+
+dialog {
+  margin: 2rem auto;
+}
