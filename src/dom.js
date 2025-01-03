@@ -3,6 +3,7 @@ import { myTodos, Todo } from "./object.js";
 function showTodo() {
   const todoContainer = document.querySelector(".todo-container");
   todoContainer.replaceChildren();
+
   myTodos.forEach((item, i) => {
     item.id = i;
     const todoCard = document.createElement("div");
@@ -18,6 +19,10 @@ function showTodo() {
       checkbox.toggleAttribute("checked");
       label.classList.toggle("checked");
     });
+
+    editBtn.addEventListener("click", () => {
+      editTodo(item);
+    })
 
     deleteBtn.addEventListener("click", () => {
       deleteTodo(item.id);
@@ -40,6 +45,31 @@ function showTodo() {
   cancelBtn.addEventListener("click", () => modal.close());
   submitBtn.addEventListener("click", () => modal.close());
   form.addEventListener("submit", addTodo);
+}
+
+function editTodo(item) {
+  const main = document.querySelector("main");
+  const editDialog = document.createElement("dialog");
+  main.appendChild(editDialog);
+  const divTitle = document.createElement("div");
+  const title = document.createElement("h3");
+  title.textContent = "Edit todo";
+  editDialog.appendChild(divTitle);
+  divTitle.appendChild(title);
+  const editForm = document.createElement("form");
+  editDialog.appendChild(editForm);
+  const editTitleDiv = document.createElement("div");
+  editForm.appendChild(editTitleDiv);
+  const editTitleLabel = document.createElement("label");
+  const editTitleInput = document.createElement("input");
+  editTitleLabel.setAttribute("for", "title");
+  editTitleInput.setAttribute("type", "text");
+  editTitleInput.setAttribute("name", "title");
+  editTitleInput.setAttribute("value", `${item.title}`);
+  editForm.append
+
+
+  editDialog.showModal();
 }
 
 function deleteTodo(id) {
