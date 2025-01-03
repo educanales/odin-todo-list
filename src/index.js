@@ -1,38 +1,5 @@
 import "./styles.css";
 import { showTodo } from "./dom.js";
-
-class Todo {
-  constructor(title, description, dueDate, priority, list) {
-    this.title = title;
-    this.description = description;
-    this.dueDate = dueDate;
-    this.priority = priority;
-    this.completed = false;
-    this.list = list;
-  }
-  setCompleted(value) {
-    this.completed = value;
-  }
-
-  logTitle() {
-    console.log(this.title);
-  }
-
-  logCompleted() {
-    console.log(this.completed);
-  }
-}
-
-let task = new Todo("Lavar la loza", "", "2024-12-15", "low", "Odin");
-
-const myTodos = [task];
-
-task.logTitle();
-task.logCompleted();
-
-task.setCompleted(true);
-task.logCompleted();
+// import { task } from "./object.js";
 
 showTodo();
-
-export { myTodos, Todo };
