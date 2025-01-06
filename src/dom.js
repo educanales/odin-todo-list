@@ -18,6 +18,7 @@ function showTodo() {
     checkbox.addEventListener("click", () => {
       checkbox.toggleAttribute("checked");
       label.classList.toggle("checked");
+      setCompleted(item.id);
     });
 
     editBtn.addEventListener("click", () => {
@@ -57,16 +58,28 @@ function editTodo(item) {
   editDialog.appendChild(divTitle);
   divTitle.appendChild(title);
   const editForm = document.createElement("form");
+  editForm.setAttribute("name", "edit-form");
+  editForm.setAttribute("method", "dialog");
   editDialog.appendChild(editForm);
   const editTitleDiv = document.createElement("div");
   editForm.appendChild(editTitleDiv);
   const editTitleLabel = document.createElement("label");
   const editTitleInput = document.createElement("input");
+  const cancelEdit = document.createElement("button");
+  const saveEdit = document.createElement("button");
   editTitleLabel.setAttribute("for", "title");
+  editTitleLabel.textContent = "Title: ";
   editTitleInput.setAttribute("type", "text");
   editTitleInput.setAttribute("name", "title");
   editTitleInput.setAttribute("value", `${item.title}`);
-  editForm.append
+  cancelEdit.textContent = "Cancel";
+  saveEdit.textContent = "Save";
+  // saveEdit.addEventListener("click", () => editDialog.close());
+  // editForm.addEventListener("submit", () => {
+  //   editValues(item);
+  // })
+
+  editForm.append(editTitleLabel, editTitleInput, cancelEdit, saveEdit);
 
 
   editDialog.showModal();
@@ -75,6 +88,23 @@ function editTodo(item) {
 function deleteTodo(id) {
   myTodos.splice(id, 1);
   showTodo();
+}
+
+// function editValues(item) {
+//   myTodos.map((todo) => {
+//     if (todo.id === item.id) {
+//       todo.title = item.value
+//     }
+//   })
+//   console.log(item.id)
+// }
+
+function setCompleted(id) {
+  myTodos.map((todo) => {
+    if (todo.id === id) {
+      todo.completed = true;
+    }
+  })
 }
 
 function addTodo(event) {
