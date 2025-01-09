@@ -10,10 +10,14 @@ function showTodo() {
     todoCard.className = "todo-card";
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
-    // checkbox.name = `${item.title}`;
     const label = document.createElement("label");
     const editBtn = document.createElement("button");
     const deleteBtn = document.createElement("button");
+    todoContainer.appendChild(todoCard);
+    todoCard.append(checkbox, label, editBtn, deleteBtn);
+    label.textContent = `${item.title}`;
+    editBtn.textContent = "Edit";
+    deleteBtn.textContent = "Delete";
 
     checkbox.addEventListener("click", () => {
       checkbox.toggleAttribute("checked");
@@ -64,13 +68,7 @@ function showTodo() {
 
     deleteBtn.addEventListener("click", () => {
       deleteTodo(item.id);
-    });
-
-    todoContainer.appendChild(todoCard);
-    todoCard.append(checkbox, label, editBtn, deleteBtn);
-    label.textContent = `${item.title}`;
-    editBtn.textContent = "Edit";
-    deleteBtn.textContent = "Delete";
+    });    
   });
 
   const modal = document.querySelector("dialog");
