@@ -22,7 +22,44 @@ function showTodo() {
     });
 
     editBtn.addEventListener("click", () => {
-      editTodo(item);
+      const main = document.querySelector("main");
+      const editDialog = document.createElement("dialog");
+      main.appendChild(editDialog);
+      const divTitle = document.createElement("div");
+      const title = document.createElement("h3");
+      title.textContent = "Edit todo";
+      editDialog.appendChild(divTitle);
+      divTitle.appendChild(title);
+      const editForm = document.createElement("form");
+      editForm.setAttribute("name", "edit-form");
+      editForm.setAttribute("method", "dialog");
+      editDialog.appendChild(editForm);
+      const editTitleDiv = document.createElement("div");
+      editForm.appendChild(editTitleDiv);
+      const editTitleLabel = document.createElement("label");
+      const editTitleInput = document.createElement("input");
+      const cancelEdit = document.createElement("button");
+      const saveEdit = document.createElement("button");
+      editTitleLabel.setAttribute("for", "title");
+      editTitleLabel.textContent = "Title: ";
+      editTitleInput.setAttribute("type", "text");
+      editTitleInput.setAttribute("id", "title");
+      editTitleInput.setAttribute("name", "title");
+      editTitleInput.setAttribute("value", `${item.title}`);
+      cancelEdit.textContent = "Cancel";
+      saveEdit.textContent = "Save";
+      editForm.append(editTitleLabel, editTitleInput, cancelEdit, saveEdit);
+
+      editForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        item.title = editTitleInput.value;
+        showTodo();
+      });
+
+      saveEdit.addEventListener("click", () => editDialog.close());
+      cancelEdit.addEventListener("click", () => editDialog.close());
+
+      editDialog.showModal();
     })
 
     deleteBtn.addEventListener("click", () => {
@@ -48,56 +85,10 @@ function showTodo() {
   form.addEventListener("submit", addTodo);
 }
 
-function editTodo(item) {
-  const main = document.querySelector("main");
-  const editDialog = document.createElement("dialog");
-  main.appendChild(editDialog);
-  const divTitle = document.createElement("div");
-  const title = document.createElement("h3");
-  title.textContent = "Edit todo";
-  editDialog.appendChild(divTitle);
-  divTitle.appendChild(title);
-  const editForm = document.createElement("form");
-  editForm.setAttribute("name", "edit-form");
-  editForm.setAttribute("method", "dialog");
-  editDialog.appendChild(editForm);
-  const editTitleDiv = document.createElement("div");
-  editForm.appendChild(editTitleDiv);
-  const editTitleLabel = document.createElement("label");
-  const editTitleInput = document.createElement("input");
-  const cancelEdit = document.createElement("button");
-  const saveEdit = document.createElement("button");
-  editTitleLabel.setAttribute("for", "title");
-  editTitleLabel.textContent = "Title: ";
-  editTitleInput.setAttribute("type", "text");
-  editTitleInput.setAttribute("name", "title");
-  editTitleInput.setAttribute("value", `${item.title}`);
-  cancelEdit.textContent = "Cancel";
-  saveEdit.textContent = "Save";
-  // saveEdit.addEventListener("click", () => editDialog.close());
-  // editForm.addEventListener("submit", () => {
-  //   editValues(item);
-  // })
-
-  editForm.append(editTitleLabel, editTitleInput, cancelEdit, saveEdit);
-
-
-  editDialog.showModal();
-}
-
 function deleteTodo(id) {
   myTodos.splice(id, 1);
   showTodo();
 }
-
-// function editValues(item) {
-//   myTodos.map((todo) => {
-//     if (todo.id === item.id) {
-//       todo.title = item.value
-//     }
-//   })
-//   console.log(item.id)
-// }
 
 function setCompleted(id) {
   myTodos.map((todo) => {
