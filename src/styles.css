@@ -61,10 +61,17 @@ main {
 
 .todo-card {
   display: flex;
-  gap: 1rem;
+  gap: 3rem;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
   font-size: 1.2rem;
+}
+
+.info-container,
+.btn-container {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .checked {
