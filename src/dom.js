@@ -10,18 +10,26 @@ function showTodo() {
     todoCard.className = "todo-card";
     const infoContainer = document.createElement("div");
     infoContainer.className = "info-container";
+    const infoMain = document.createElement("div");
+    infoMain.className = "info-main";    
+    const infoSub = document.createElement("div");
+    infoSub.className = "info-sub";
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     const label = document.createElement("label");
+    const description = document.createElement("p");
     const btnContainer = document.createElement("div");
     btnContainer.className = "btn-container";
     const editBtn = document.createElement("button");
     const deleteBtn = document.createElement("button");
     todoContainer.appendChild(todoCard);
     todoCard.append(infoContainer, btnContainer);
-    infoContainer.append(checkbox, label);
+    infoContainer.append(infoMain, infoSub);
+    infoMain.append(checkbox, label);
+    infoSub.append(description);
     btnContainer.append(editBtn, deleteBtn);
     label.textContent = `${item.title}`;
+    description.textContent = `${item.description}`;
     editBtn.textContent = "Edit";
     deleteBtn.textContent = "Delete";
 
