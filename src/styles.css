@@ -82,6 +82,7 @@ main {
 .info-container {
   flex-direction: column;
   gap: 0.3rem;
+  min-width: 300px;
 }
 
 .info-main {
@@ -92,6 +93,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 0.25rem;
 }
 
 .priority {
