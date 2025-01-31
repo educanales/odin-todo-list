@@ -22,7 +22,15 @@ class Todo {
 
 let task = new Todo("Lavar ropa", "La de ciclismo y la de trabajo", "2024-12-15", "low", "Odin");
 
-const myTodos = [task];
+const myTodos = [
+  {
+    name: "Default",
+    id: 0,
+  },
+  task,
+];
+
+const projects = [myTodos];
 
 
-export { myTodos, Todo };
+export { myTodos, Todo, projects };
