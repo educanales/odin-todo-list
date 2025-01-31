@@ -4,8 +4,8 @@ function showTodo() {
   const todoContainer = document.querySelector(".todo-container");
   todoContainer.replaceChildren();
 
-  myTodos.forEach((item, i) => {
-    item.id = i;
+  for (let i = 1; i < myTodos.length; i++) {
+    let id = i;
     const todoCard = document.createElement("div");
     todoCard.className = "todo-card";
     const infoContainer = document.createElement("div");
@@ -34,17 +34,17 @@ function showTodo() {
     infoSub.append(description);
     infoBottom.append(dueDate, priority);
     btnContainer.append(editBtn, deleteBtn);
-    label.textContent = `${item.title}`;
-    description.textContent = `${item.description}`;
-    dueDate.textContent = `${item.dueDate}`;
-    priority.textContent = `${item.priority}`;
+    label.textContent = `${myTodos[i].title}`;
+    description.textContent = `${myTodos[i].description}`;
+    dueDate.textContent = `${myTodos[i].dueDate}`;
+    priority.textContent = `${myTodos[i].priority}`;
     editBtn.textContent = "Edit";
     deleteBtn.textContent = "Delete";
 
     checkbox.addEventListener("click", () => {
       checkbox.toggleAttribute("checked");
       label.classList.toggle("checked");
-      setCompleted(item.id);
+      setCompleted(id);
     });
 
     editBtn.addEventListener("click", () => {
@@ -71,14 +71,14 @@ function showTodo() {
       editTitleInput.setAttribute("type", "text");
       editTitleInput.setAttribute("id", "title");
       editTitleInput.setAttribute("name", "title");
-      editTitleInput.setAttribute("value", `${item.title}`);
+      editTitleInput.setAttribute("value", `${myTodos[i].title}`);
       cancelEdit.textContent = "Cancel";
       saveEdit.textContent = "Save";
       editForm.append(editTitleLabel, editTitleInput, cancelEdit, saveEdit);
 
       editForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        item.title = editTitleInput.value;
+        myTodos[i].title = editTitleInput.value;
         showTodo();
       });
 
@@ -89,9 +89,9 @@ function showTodo() {
     })
 
     deleteBtn.addEventListener("click", () => {
-      deleteTodo(item.id);
-    });    
-  });
+      deleteTodo(id);
+    });
+  };
 
   const modal = document.querySelector("dialog");
   const addNewTodo = document.querySelector(".add-new-todo");
