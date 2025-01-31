@@ -1,4 +1,4 @@
-import { myTodos, Todo } from "./object.js";
+import { myTodos, Todo, projects } from "./object.js";
 
 function showTodo() {
   const todoContainer = document.querySelector(".todo-container");
@@ -139,4 +139,13 @@ function addTodo(event) {
   showTodo();
 }
 
-export { showTodo };
+function showProjectList() {
+  const list = document.querySelector(".projects-list");
+  projects.forEach((project) => {
+    const li = document.createElement("li");
+    li.textContent = project[0].name;
+    list.appendChild(li);
+  })
+}
+
+export { showTodo, showProjectList };
