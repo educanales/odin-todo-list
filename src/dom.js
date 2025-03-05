@@ -1,6 +1,6 @@
-import { myTodos, Todo, projects } from "./object.js";
+import { Todo, projects } from "./object.js";
 
-function showTodo() {
+function showTodo(myTodos) {
   const todoContainer = document.querySelector(".todo-container");
   todoContainer.replaceChildren();
 
@@ -44,7 +44,7 @@ function showTodo() {
     checkbox.addEventListener("click", () => {
       checkbox.toggleAttribute("checked");
       label.classList.toggle("checked");
-      setCompleted(id);
+      setCompleted(myTodos, id);
     });
 
     editBtn.addEventListener("click", () => {
@@ -89,7 +89,7 @@ function showTodo() {
     })
 
     deleteBtn.addEventListener("click", () => {
-      deleteTodo(id);
+      deleteTodo(myTodos, id);
     });
   };
 
@@ -102,23 +102,25 @@ function showTodo() {
   addNewTodo.addEventListener("click", () => modal.showModal());
   cancelBtn.addEventListener("click", () => modal.close());
   submitBtn.addEventListener("click", () => modal.close());
-  form.addEventListener("submit", addTodo);
+  form.addEventListener("submit", (e) => {
+    addTodo(e, myTodos);
+  });
 }
 
-function deleteTodo(id) {
-  myTodos.splice(id, 1);
-  showTodo();
+function deleteTodo(todos, id) {
+  todos.splice(id, 1);
+  showTodo(todos);
 }
 
-function setCompleted(id) {
-  myTodos.map((todo) => {
+function setCompleted(todos, id) {
+  todos.map((todo) => {
     if (todo.id === id) {
       todo.completed = true;
     }
   })
 }
 
-function addTodo(event) {
+function addTodo(event, todos) {
   event.preventDefault();
 
   const newTodo = new Todo(
@@ -128,15 +130,15 @@ function addTodo(event) {
     priority.value
   );
 
-  myTodos.push(newTodo);
+  todos.push(newTodo);
   title.value = "";
   description.value = "";
   dueDate.value = "";
   priority.value = "";
   
-  console.log(myTodos);
+  console.log(todos);
 
-  showTodo();
+  showTodo(todos);
 }
 
 function showProjectList() {
