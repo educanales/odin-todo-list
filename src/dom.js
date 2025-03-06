@@ -79,7 +79,7 @@ function showTodo(myTodos) {
       editForm.addEventListener("submit", (event) => {
         event.preventDefault();
         myTodos[i].title = editTitleInput.value;
-        showTodo();
+        showTodo(myTodos);
       });
 
       saveEdit.addEventListener("click", () => editDialog.close());
@@ -142,12 +142,50 @@ function addTodo(event, todos) {
 }
 
 function showProjectList() {
-  const list = document.querySelector(".projects-list");
+  const main = document.querySelector("main");
+  const newProjectBtn = document.querySelector(".new-project-btn");
+  const list = document.querySelector(".projects-list");  
+
   projects.forEach((project) => {
     const li = document.createElement("li");
     li.textContent = project[0].name;
     list.appendChild(li);
-  })
+  });
+  
+  newProjectBtn.addEventListener("click", () => {
+    const newProjectModal = document.createElement("dialog");
+    const divTitle = document.createElement("div");
+    const title = document.createElement("h3");
+    const newProjectForm = document.createElement("form");
+    const inputName = document.createElement("input");
+    const cancelBtn = document.createElement("button");
+    const saveBtn = document.createElement("button");
+    newProjectForm.setAttribute("name", "new-project-form");
+    newProjectForm.setAttribute("method", "dialog");
+    inputName.setAttribute("type", "text");
+    inputName.setAttribute("id", "project-name");
+    inputName.setAttribute("name", "project-name");
+
+    title.textContent = "New Project";
+    cancelBtn.textContent = "Cancel";
+    saveBtn.textContent = "Save";
+
+    main.appendChild(newProjectModal);
+    newProjectModal.append(divTitle, newProjectForm);
+    divTitle.appendChild(title);
+    newProjectForm.append(inputName, cancelBtn, saveBtn);
+
+    saveBtn.addEventListener("click", () => newProjectModal.close());
+    cancelBtn.addEventListener("click", () => newProjectModal.close());
+
+    newProjectModal.showModal();
+  });
+
+  
+}
+
+function createNewProject() {
+
 }
 
 export { showTodo, showProjectList };
