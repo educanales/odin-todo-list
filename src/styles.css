@@ -69,6 +69,23 @@ main {
 
 aside {
   grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.projects-list {
+  list-style: none;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  padding: 0;
+}
+
+.projects-list > li {
+  padding: 0.5rem 1rem;
+  border: 1px solid gray;
+  border-radius: 5px;
 }
 
 .todo-container {
