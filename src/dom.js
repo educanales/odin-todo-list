@@ -141,7 +141,7 @@ function addTodo(event, todos) {
   showTodo(todos);
 }
 
-function showProjectList() {
+function showProjectList() { // Duplica el proyecto anterior
   const main = document.querySelector("main");
   const newProjectBtn = document.querySelector(".new-project-btn");
   const list = document.querySelector(".projects-list");  
@@ -160,11 +160,12 @@ function showProjectList() {
     const inputName = document.createElement("input");
     const cancelBtn = document.createElement("button");
     const saveBtn = document.createElement("button");
+
     newProjectForm.setAttribute("name", "new-project-form");
     newProjectForm.setAttribute("method", "dialog");
     inputName.setAttribute("type", "text");
-    inputName.setAttribute("id", "project-name");
-    inputName.setAttribute("name", "project-name");
+    inputName.setAttribute("id", "projectName");
+    inputName.setAttribute("name", "projectName");
 
     title.textContent = "New Project";
     cancelBtn.textContent = "Cancel";
@@ -177,15 +178,26 @@ function showProjectList() {
 
     saveBtn.addEventListener("click", () => newProjectModal.close());
     cancelBtn.addEventListener("click", () => newProjectModal.close());
+    newProjectForm.addEventListener("submit", createNewProject);
 
     newProjectModal.showModal();
-  });
-
-  
+  });  
 }
 
-function createNewProject() {
+function createNewProject(event) { // Duplica el proyecto anterior
+  event.preventDefault();
+  const newProject = [
+    {
+      name: projectName.value,
+    },
+  ]
 
+  projectName.value = "";
+  // console.log(event);
+  projects.push(newProject);
+  // console.log(newProject);
+  showProjectList();
+  console.log(projects);
 }
 
 export { showTodo, showProjectList };
