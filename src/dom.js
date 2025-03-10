@@ -141,12 +141,13 @@ function addTodo(event, todos) {
   showTodo(todos);
 }
 
-function showProjectList() { // Duplica el proyecto anterior
+function showProjectList() {
   const main = document.querySelector("main");
   const newProjectBtn = document.querySelector(".new-project-btn");
-  const list = document.querySelector(".projects-list");  
+  const list = document.querySelector(".projects-list");
+  list.replaceChildren();
 
-  projects.forEach((project) => {
+  projects.forEach((project) => {    
     const li = document.createElement("li");
     li.textContent = project[0].name;
     list.appendChild(li);
@@ -181,10 +182,10 @@ function showProjectList() { // Duplica el proyecto anterior
     newProjectForm.addEventListener("submit", createNewProject);
 
     newProjectModal.showModal();
-  });  
+  });
 }
 
-function createNewProject(event) { // Duplica el proyecto anterior
+function createNewProject(event) { // Al agregar un 3er proyecto crea un Objeto indefinido
   event.preventDefault();
   const newProject = [
     {
