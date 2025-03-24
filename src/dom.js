@@ -167,6 +167,8 @@ function showProjectList() {
     inputName.setAttribute("type", "text");
     inputName.setAttribute("id", "projectName");
     inputName.setAttribute("name", "projectName");
+    cancelBtn.setAttribute("type", "reset");
+    saveBtn.setAttribute("type", "submit");
 
     title.textContent = "New Project";
     cancelBtn.textContent = "Cancel";
@@ -177,16 +179,18 @@ function showProjectList() {
     divTitle.appendChild(title);
     newProjectForm.append(inputName, cancelBtn, saveBtn);
 
+    newProjectModal.showModal();
     saveBtn.addEventListener("click", () => newProjectModal.close());
     cancelBtn.addEventListener("click", () => newProjectModal.close());
-    newProjectForm.addEventListener("submit", createNewProject);
-
-    newProjectModal.showModal();
+    newProjectForm.addEventListener("submit", createNewProject);    
   });
+
+  console.log(projects);
 }
 
 function createNewProject(event) { // Al agregar un 3er proyecto crea un Objeto indefinido
   event.preventDefault();
+  
   const newProject = [
     {
       name: projectName.value,
@@ -194,11 +198,8 @@ function createNewProject(event) { // Al agregar un 3er proyecto crea un Objeto 
   ]
 
   projectName.value = "";
-  // console.log(event);
   projects.push(newProject);
-  // console.log(newProject);
-  showProjectList();
-  console.log(projects);
+  showProjectList();  
 }
 
 export { showTodo, showProjectList };
