@@ -104,7 +104,7 @@ function showTodo(myTodos) {
   submitBtn.addEventListener("click", () => modal.close());
   form.addEventListener("submit", (e) => {
     addTodo(e, myTodos);
-  });
+  });  
 }
 
 function deleteTodo(todos, id) {
@@ -133,8 +133,8 @@ function addTodo(event, todos) {
   todos.push(newTodo);
   title.value = "";
   description.value = "";
-  dueDate.value = "";
-  priority.value = "";
+  // dueDate.value = "";
+  // priority.value = "";
   
   console.log(todos);
 
