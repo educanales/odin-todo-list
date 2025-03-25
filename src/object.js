@@ -1,11 +1,11 @@
 class Todo {
-  constructor(title, description, dueDate, priority, list) {
+  constructor(title, description, dueDate, priority) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
     this.completed = false;
-    this.list = list;
+    // this.list = list;
   }
   setCompleted(value) {
     this.completed = value;
@@ -20,7 +20,7 @@ class Todo {
   }
 }
 
-let task = new Todo("Lavar ropa", "La de ciclismo y la de trabajo", "2024-12-15", "low", "Odin");
+let task = new Todo("Lavar ropa", "La de ciclismo y la de trabajo", "2024-12-15", "low");
 
 const defaultTodos = [
   {
