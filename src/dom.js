@@ -41,6 +41,9 @@ function showTodo(myTodos) {
     editBtn.textContent = "Edit";
     deleteBtn.textContent = "Delete";
 
+    const addNewTodo = document.querySelector(".add-new-todo");
+    addNewTodo.addEventListener("click", dialogLogic);
+
     checkbox.addEventListener("click", () => {
       checkbox.toggleAttribute("checked");
       label.classList.toggle("checked");
@@ -92,19 +95,6 @@ function showTodo(myTodos) {
       deleteTodo(myTodos, id);
     });
   };
-
-  const modal = document.querySelector("dialog");
-  const addNewTodo = document.querySelector(".add-new-todo");
-  const cancelBtn = document.querySelector(".cancel-btn");
-  const submitBtn = document.querySelector(".submit-btn");
-  const form = document.forms["todo-form"];
-
-  addNewTodo.addEventListener("click", () => modal.showModal());
-  cancelBtn.addEventListener("click", () => modal.close());
-  submitBtn.addEventListener("click", () => modal.close());
-  form.addEventListener("submit", (e) => {
-    addTodo(e, myTodos);
-  });  
 }
 
 function deleteTodo(todos, id) {
@@ -139,6 +129,21 @@ function addTodo(event, todos) {
   console.log(todos);
 
   showTodo(todos);
+}
+
+function dialogLogic() {
+  const modal = document.querySelector("dialog");
+  const cancelBtn = document.querySelector(".cancel-btn");
+  const submitBtn = document.querySelector(".submit-btn");
+  const form = document.forms["todo-form"];
+
+  modal.showModal();
+
+  cancelBtn.addEventListener("click", () => modal.close());
+  submitBtn.addEventListener("click", () => modal.close());
+  form.addEventListener("submit", (e) => {
+    addTodo(e, myTodos);
+  });
 }
 
 function showProjectList() {
@@ -180,9 +185,9 @@ function showProjectList() {
     newProjectForm.append(inputName, cancelBtn, saveBtn);
 
     newProjectModal.showModal();
-    saveBtn.addEventListener("click", () => newProjectModal.close());
     cancelBtn.addEventListener("click", () => newProjectModal.close());
-    newProjectForm.addEventListener("submit", createNewProject);    
+    saveBtn.addEventListener("click", () => newProjectModal.close());
+    newProjectForm.addEventListener("submit", createNewProject);
   });
 
   console.log(projects);
@@ -197,7 +202,7 @@ function createNewProject(event) { // Al agregar un 3er proyecto crea un Objeto 
     },
   ]
 
-  projectName.value = "";
+  // projectName.value = "";
   projects.push(newProject);
   showProjectList();  
 }
