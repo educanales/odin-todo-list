@@ -186,8 +186,11 @@ function showProjectList() {
 
     newProjectModal.showModal();
     cancelBtn.addEventListener("click", () => newProjectModal.close());
-    saveBtn.addEventListener("click", () => newProjectModal.close());
-    newProjectForm.addEventListener("submit", createNewProject);
+    newProjectForm.addEventListener("submit", (e) => {
+      createNewProject(e);
+      newProjectModal.close();
+    });
+    // saveBtn.addEventListener("click", () => newProjectModal.close());
   });
 
   console.log(projects);
