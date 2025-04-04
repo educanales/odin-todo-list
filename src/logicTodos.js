@@ -4,6 +4,8 @@ import { Todo } from "./object";
 export function addTodo(event, todos) {
   event.preventDefault();
 
+  // console.log(description.value);
+
   const newTodo = new Todo(
     title.value,
     description.value,
@@ -17,7 +19,7 @@ export function addTodo(event, todos) {
   // dueDate.value = "";
   // priority.value = "";
   
-  console.log(todos);
+  // console.log(todos);
 
   renderTodo(todos);
 }
