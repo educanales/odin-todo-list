@@ -20,17 +20,20 @@ class Todo {
   }
 }
 
+class Project {
+  constructor(name, todos) {
+    this.name = name;
+    this.todos = todos;
+  }
+}
+
 let task = new Todo("Lavar ropa", "La de ciclismo y la de trabajo", "2024-12-15", "low");
 
-const defaultTodos = [
-  {
-    name: "Default",
-    id: 0,
-  },
-  task,
-];
+let defaultTodos = [task];
 
-const projects = [defaultTodos];
+let defaultProject = new Project("Default", defaultTodos);
+
+const myProjects = [defaultProject];
 
 
-export { defaultTodos, Todo, projects };
+export { defaultProject, Todo, Project, defaultTodos, myProjects };
