@@ -51,23 +51,29 @@ function renderTodo(myTodos) {
     editBtn.textContent = "Edit";
     deleteBtn.textContent = "Delete";
 
-    const addNewTodo = document.querySelector(".add-new-todo");    
+    const addNewTodo = document.querySelector(".new-todo-btn");
     const addTodoDialog = document.querySelector("#add-todo");
-    const addTodoForm = document.forms["todo-form"];
+    const addTodoForm = document.forms["add-todo-form"];
 
-    const cancelBtn = document.getElementById("new-todo-cancel");
-    cancelBtn.addEventListener("click", () => addTodoDialog.close());
+    const newTodoCancelBtn = document.getElementById("new-todo-cancel");
+    newTodoCancelBtn.addEventListener("click", () => {
+      // console.log("Cancel new todo");
+      addTodoDialog.close();
+    });
 
-    const saveBtn = document.getElementById("new-todo-save");
-    saveBtn.addEventListener("click", () => addTodoDialog.close());
+    const newTodoSaveBtn = document.getElementById("new-todo-save");
+    newTodoSaveBtn.addEventListener("click", () => {
+      // console.log("Save new todo");
+      addTodoDialog.close();
+    });
     
-    // addTodoDialog.addEventListener("submit", (event) => addTodo(event, myTodos));
-
     addNewTodo.addEventListener("click", () => {
       addTodoDialog.showModal();
     });
 
-    addTodoForm.addEventListener("submit", (event) => addTodo(event, myTodos));
+    addTodoForm.addEventListener("submit", (event) => {
+      addTodo(event, myTodos);
+    });
 
     checkbox.addEventListener("click", () => {
       checkbox.toggleAttribute("checked");
@@ -79,16 +85,11 @@ function renderTodo(myTodos) {
       const editTodoDialog = document.querySelector("#edit-todo-dialog");
       const cancelBtn = document.querySelector("#edit-todo-cancel");
       const saveBtn = document.getElementById("edit-todo-save");
-
-      const inputTitle = document.querySelector("#title");
-      inputTitle.value = todo.title;
-
-      const form = document.forms["edit-todo-form"];
+      const form = document.forms["edit-todo-form"];      
+      const inputTitle = document.querySelector("#edited-title");
+      inputTitle.value = todo.title;      
 
       editTodoDialog.showModal();
-
-      console.log(inputTitle.value);
-      
 
       form.addEventListener("submit", (event) => {
         event.preventDefault();        
@@ -97,7 +98,7 @@ function renderTodo(myTodos) {
         editTodoDialog.close();
       });
 
-      // saveBtn.addEventListener("click", () => editTodoDialog.close());
+      saveBtn.addEventListener("click", () => editTodoDialog.close());
       cancelBtn.addEventListener("click", () => editTodoDialog.close());
     });
 
