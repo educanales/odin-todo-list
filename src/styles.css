@@ -63,7 +63,7 @@ main {
   ;
 }
 
-.add-todo-container {
+.new-todo-container {
   grid-area: button;
 }
 
