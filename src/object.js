@@ -27,7 +27,12 @@ class Project {
   }
 }
 
-let task = new Todo("Lavar ropa", "La de ciclismo y la de trabajo", "2024-12-15", "low");
+let task = new Todo(
+  "Lavar ropa",
+  "La de ciclismo y la de trabajo",
+  "2024-12-15",
+  "low"
+);
 
 let defaultTodos = [task];
 
