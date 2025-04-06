@@ -18,6 +18,7 @@
       <div class="new-todo-container">
         <button class="new-todo-btn">Add New Todo</button>
       </div>
+
       <aside>
         <button class="new-project-btn">Create New Project</button>
         <ul class="projects-list">
@@ -26,18 +27,18 @@
 
       <div class="todo-container"></div>
 
-      <dialog id="edit-todo-dialog">
+      <dialog id="add-project-dialog">
         <div class="dialog-title">
-          <h3>Edit Todo</h3>
+          <h3>Add new project</h3>
         </div>
-        <form method="dialog" name="edit-todo-form">
+        <form method="dialog" name="add-project-form">
           <div class="form-row">
-            <label for="edited-title">Title</label>
-            <input type="text" name="edited-title" id="edited-title">
+            <label for="project-name">Project</label>
+            <input type="text" name="project-name" id="project-name">
           </div>
           <div>
-            <button id="edit-todo-cancel">Cancel</button>
-            <button id="edit-todo-save" type="submit">Save</button>
+            <button id="add-project-cancel" type="reset">Cancel</button>
+            <button id="add-project-save" type="submit">Save</button>
           </div>
         </form>
       </dialog>
@@ -68,11 +69,27 @@
             </select>
           </div>
           <div class="form-row btn">
-            <button id="new-todo-cancel">Cancel</button>
+            <button id="new-todo-cancel" type="reset">Cancel</button>
             <button id="new-todo-save" type="submit">Submit</button>
           </div>
         </form>
       </dialog>
+
+      <dialog id="edit-todo-dialog">
+        <div class="dialog-title">
+          <h3>Edit Todo</h3>
+        </div>
+        <form method="dialog" name="edit-todo-form">
+          <div class="form-row">
+            <label for="edited-title">Title</label>
+            <input type="text" name="edited-title" id="edited-title">
+          </div>
+          <div>
+            <button id="edit-todo-cancel" type="reset">Cancel</button>
+            <button id="edit-todo-save" type="submit">Save</button>
+          </div>
+        </form>
+      </dialog>      
      
     </main>
   </body>
