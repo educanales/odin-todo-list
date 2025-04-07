@@ -1,11 +1,11 @@
 import { addTodo, deleteTodo, setCompleted } from "./logicTodos";
 
 
-function renderTodo(myTodos) {
+export function renderTodos(todos) {
   const todoContainer = document.querySelector(".todo-container");
   todoContainer.replaceChildren();
 
-  myTodos.forEach((todo, index) => {
+  todos.forEach((todo, index) => {
     let id = index;
     const todoCard = document.createElement("div");
     todoCard.className = "todo-card";
@@ -51,34 +51,10 @@ function renderTodo(myTodos) {
     editBtn.textContent = "Edit";
     deleteBtn.textContent = "Delete";
 
-    const addNewTodo = document.querySelector(".new-todo-btn");
-    const addTodoDialog = document.querySelector("#add-todo");
-    const addTodoForm = document.forms["add-todo-form"];
-
-    const newTodoCancelBtn = document.getElementById("new-todo-cancel");
-    newTodoCancelBtn.addEventListener("click", () => {
-      // console.log("Cancel new todo");
-      addTodoDialog.close();
-    });
-
-    const newTodoSaveBtn = document.getElementById("new-todo-save");
-    newTodoSaveBtn.addEventListener("click", () => {
-      // console.log("Save new todo");
-      addTodoDialog.close();
-    });
-    
-    addNewTodo.addEventListener("click", () => {
-      addTodoDialog.showModal();
-    });
-
-    addTodoForm.addEventListener("submit", (event) => {
-      addTodo(event, myTodos);
-    });
-
     checkbox.addEventListener("click", () => {
       checkbox.toggleAttribute("checked");
       label.classList.toggle("checked");
-      setCompleted(myTodos, id);
+      setCompleted(todos, id);
     });
 
     editBtn.addEventListener("click", () => {
@@ -87,14 +63,14 @@ function renderTodo(myTodos) {
       const saveBtn = document.getElementById("edit-todo-save");
       const form = document.forms["edit-todo-form"];      
       const inputTitle = document.querySelector("#edited-title");
-      inputTitle.value = todo.title;      
+      inputTitle.value = todo.title;
 
       editTodoDialog.showModal();
 
       form.addEventListener("submit", (event) => {
         event.preventDefault();        
         todo.title = inputTitle.value;
-        renderTodo(myTodos);
+        renderTodos(todos);
         editTodoDialog.close();
       });
 
@@ -103,9 +79,23 @@ function renderTodo(myTodos) {
     });
 
     deleteBtn.addEventListener("click", () => {
-      deleteTodo(myTodos, id);
+      deleteTodo(todos, id);
     });
   });
 }
 
-export { renderTodo };
+export function renderAddTodoDialog(todos) {
+  const addNewTodoBtn = document.querySelector(".new-todo-btn");
+  const addTodoDialog = document.querySelector("#add-todo");
+  const addTodoForm = document.forms["add-todo-form"];
+  const newTodoCancelBtn = document.getElementById("new-todo-cancel");
+
+  addNewTodoBtn.addEventListener("click", () => addTodoDialog.showModal());
+
+  newTodoCancelBtn.addEventListener("click", () => addTodoDialog.close());
+
+  addTodoForm.addEventListener("submit", e => {
+    addTodo(e, todos);
+    addTodoDialog.close();
+  });
+}
