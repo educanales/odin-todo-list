@@ -1,11 +1,8 @@
-import { renderTodo } from "./renderTodos";
+import { renderTodos } from "./renderTodos";
 import { Todo } from "./object";
 
 export function addTodo(event, todos) {
   event.preventDefault();
-
-  // console.log(description.value);
-
   const newTodo = new Todo(
     title.value,
     description.value,
@@ -18,15 +15,12 @@ export function addTodo(event, todos) {
   description.value = "";
   // dueDate.value = "";
   // priority.value = "";
-  
-  // console.log(todos);
-
-  renderTodo(todos);
+  renderTodos(todos);
 }
 
 export function deleteTodo(todos, id) {
   todos.splice(id, 1);
-  renderTodo(todos);
+  renderTodos(todos);
 }
 
 export function setCompleted(todos, id) {
