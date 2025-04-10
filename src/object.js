@@ -21,8 +21,9 @@ class Todo {
 }
 
 class Project {
-  constructor(name, todos) {
+  constructor(name, id, todos) {
     this.name = name;
+    this.id = id;
     this.todos = [todos];
   }
 }
@@ -36,7 +37,7 @@ let task = new Todo(
 
 let defaultTodos = [task];
 
-let defaultProject = new Project("Default", defaultTodos);
+let defaultProject = new Project("Default", Date.now().toString(), defaultTodos);
 
 const myProjects = [defaultProject];
 
