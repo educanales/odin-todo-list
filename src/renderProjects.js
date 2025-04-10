@@ -32,7 +32,8 @@ export function renderProjectList() {
 function addProject(e) {
   e.preventDefault();
   const nameValue = projectname.value;
-  const newProject = new Project(nameValue);
+  const id = Date.now().toString();
+  const newProject = new Project(nameValue, id, []);
   myProjects.push(newProject);
   projectname.value = "";
   // console.log(myProjects);
