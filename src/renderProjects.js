@@ -39,3 +39,14 @@ function addProject(e) {
   // console.log(myProjects);
   renderProjectList();
 }
+
+// Buscar la forma de saber el id del proyecto seleccionado
+export function changeActiveProject() {
+  const projectContainer = document.querySelector(".projects-list");
+
+  projectContainer.addEventListener("click", e => {
+    if (e.target.tagName.toLowerCase() === "li") {
+      
+    }
+  })
+}
