@@ -37,9 +37,9 @@ let task = new Todo(
 
 let defaultProject = new Project("Default", Date.now().toString(), task);
 
-let activeProject = defaultProject.todos;
+let activeProjectTodos = defaultProject.todos;
 
 const myProjects = [defaultProject];
 
 
-export { defaultProject, Todo, Project, activeProject, myProjects };
+export { defaultProject, Todo, Project, activeProjectTodos, myProjects };
