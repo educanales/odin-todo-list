@@ -26,6 +26,8 @@ export function renderProjectList() {
     const li = document.createElement("li");
     li.textContent = project.name;
     projectList.appendChild(li);
+
+    li.addEventListener("click", () => changeActiveProject(project.id));
   });
 }
 
@@ -41,12 +43,10 @@ function addProject(e) {
 }
 
 // Buscar la forma de saber el id del proyecto seleccionado
-export function changeActiveProject() {
-  const projectContainer = document.querySelector(".projects-list");
-
-  projectContainer.addEventListener("click", e => {
-    if (e.target.tagName.toLowerCase() === "li") {
-      
+export function changeActiveProject(projectId) {
+  myProjects.filter((project) => {
+    if (project.id === projectId) {
+      console.log(projectId);
     }
-  })
+  }) 
 }
