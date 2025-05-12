@@ -1,4 +1,5 @@
-import { myProjects, Project } from "./object";
+import { myProjects, Project, activeProjectTodos } from "./object";
+import { renderTodos } from "./renderTodos";
 
 export function renderProjectDialog() {
   const newProjectBtn = document.querySelector(".new-project-btn");
@@ -42,11 +43,11 @@ function addProject(e) {
   renderProjectList();
 }
 
-// Buscar la forma de saber el id del proyecto seleccionado
+// Buscar la forma de poder cambiar activeProjectTodos
 export function changeActiveProject(projectId) {
-  myProjects.filter((project) => {
-    if (project.id === projectId) {
-      console.log(projectId);
-    }
-  }) 
+  let projectFiltered = myProjects.find(project => project.id === projectId)
+  // activeProjectTodos = projectFiltered.todos;
+  console.log(projectFiltered.todos);
+  console.log(activeProjectTodos);
+  // renderTodos(activeProjectTodos);
 }
