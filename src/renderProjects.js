@@ -43,11 +43,9 @@ function addProject(e) {
   renderProjectList();
 }
 
-// Buscar la forma de poder cambiar activeProjectTodos
 export function changeActiveProject(projectId) {
   let projectFiltered = myProjects.find(project => project.id === projectId)
-  // activeProjectTodos = projectFiltered.todos;
-  console.log(projectFiltered.todos);
-  console.log(activeProjectTodos);
-  // renderTodos(activeProjectTodos);
+  let newActiveProjectTodos = projectFiltered.todos;
+  // console.log(newActiveProjectTodos);
+  renderTodos(newActiveProjectTodos);
 }
