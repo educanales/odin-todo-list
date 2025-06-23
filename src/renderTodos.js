@@ -4,6 +4,8 @@ import { addTodo, deleteTodo, setCompleted } from "./logicTodos";
 export function renderTodos(todos) {
   const todoContainer = document.querySelector(".todo-container");
   todoContainer.replaceChildren();
+  
+  // Agregar un condicional que muestre un mensaje si no hay todos en el proyecto
 
   todos.forEach((todo, index) => {
     let id = index;
