@@ -1,5 +1,5 @@
 import { myProjects, Project, activeProjectTodos } from "./object";
-import { renderTodos } from "./renderTodos";
+import { renderAddTodoDialog, renderTodos } from "./renderTodos";
 
 export function renderProjectDialog() {
   const newProjectBtn = document.querySelector(".new-project-btn");
@@ -28,7 +28,7 @@ export function renderProjectList() {
     li.textContent = project.name;
     projectList.appendChild(li);
 
-    li.addEventListener("click", () => changeActiveProject(project.id));
+    li.addEventListener("click", () => changeActiveProject(project));
   });
 }
 
@@ -39,13 +39,14 @@ function addProject(e) {
   const newProject = new Project(nameValue, id, []);
   myProjects.push(newProject);
   projectname.value = "";
-  // console.log(myProjects);
   renderProjectList();
 }
 
-export function changeActiveProject(projectId) {
-  let projectFiltered = myProjects.find(project => project.id === projectId)
-  let newActiveProjectTodos = projectFiltered.todos;
-  // console.log(newActiveProjectTodos);
-  renderTodos(newActiveProjectTodos);
+export function changeActiveProject(project) {
+  // console.log(project.name);
+  // console.log(activeProjectTodos);
+  activeProjectTodos.pop();
+  activeProjectTodos.push(project.todos);
+  renderTodos(activeProjectTodos);
+  renderAddTodoDialog(activeProjectTodos);
 }
