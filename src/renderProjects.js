@@ -45,6 +45,6 @@ function addProject(e) {
 export function changeActiveProject(projectId) {
   const selectedProject = myProjects.find(myProject => myProject.id === projectId);
   // console.log(selectedProject);
-  renderAddTodoDialog(selectedProject.todos);
-  renderTodos(selectedProject.todos);  
+  // renderAddTodoDialog(selectedProject.todos);
+  renderTodos(selectedProject.todos);
 }
