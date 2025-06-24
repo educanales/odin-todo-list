@@ -35,11 +35,20 @@ let task = new Todo(
   "low"
 );
 
-let defaultProject = new Project("Default", Date.now().toString(), task);
+let task2 = new Todo(
+  "Yoga",
+  "10 minutos minimo",
+  "2025-06-23",
+  "medium"
+);
+
+let defaultProject = new Project("Default", 1, task);
+
+let otherProject = new Project("Personal", 2, task2);
 
 let activeProjectTodos = defaultProject.todos;
 
-const myProjects = [defaultProject];
+const myProjects = [defaultProject, otherProject];
 
 
 export { defaultProject, Todo, Project, activeProjectTodos, myProjects };
