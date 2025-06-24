@@ -6,4 +6,4 @@ import { renderProjectDialog, renderProjectList } from "./renderProjects.js";
 renderProjectList();
 renderTodos(activeProjectTodos);
 renderProjectDialog();
-renderAddTodoDialog(activeProjectTodos);
+// renderAddTodoDialog(activeProjectTodos);
