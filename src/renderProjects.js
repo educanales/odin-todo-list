@@ -28,7 +28,7 @@ export function renderProjectList() {
     li.textContent = project.name;
     projectList.appendChild(li);
 
-    li.addEventListener("click", () => changeActiveProject(project));
+    li.addEventListener("click", () => changeActiveProject(project.id));
   });
 }
 
@@ -42,11 +42,9 @@ function addProject(e) {
   renderProjectList();
 }
 
-export function changeActiveProject(project) {
-  // console.log(project.name);
-  // console.log(activeProjectTodos);
-  activeProjectTodos.pop();
-  activeProjectTodos.push(project.todos);
-  renderTodos(activeProjectTodos);
-  renderAddTodoDialog(activeProjectTodos);
+export function changeActiveProject(projectId) {
+  const selectedProject = myProjects.find(myProject => myProject.id === projectId);
+  // console.log(selectedProject);
+  renderAddTodoDialog(selectedProject.todos);
+  renderTodos(selectedProject.todos);  
 }
