@@ -84,6 +84,7 @@ export function renderTodos(todos) {
       deleteTodo(todos, id);
     });
   });
+  renderAddTodoDialog(todos);
 }
 
 export function renderAddTodoDialog(todos) {
@@ -91,6 +92,8 @@ export function renderAddTodoDialog(todos) {
   const addTodoDialog = document.querySelector("#add-todo");
   const addTodoForm = document.forms["add-todo-form"];
   const newTodoCancelBtn = document.getElementById("new-todo-cancel");
+
+  // console.log(`Se ha renderizado ${todos}`);
 
   addNewTodoBtn.addEventListener("click", () => addTodoDialog.showModal());
 
