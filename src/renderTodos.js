@@ -1,10 +1,15 @@
 import { addTodo, deleteTodo, setCompleted } from "./logicTodos";
+import { myProjects } from "./object";
+import { selectedProjectId } from "./renderProjects";
 
 
-export function renderTodos(todos) {
+export function renderTodos() {
   const todoContainer = document.querySelector(".todo-container");
   todoContainer.replaceChildren();
-  
+
+  const selectedProject = myProjects.find(project => project.id === selectedProjectId);
+  const todos = selectedProject.todos;
+    
   // Agregar un condicional que muestre un mensaje si no hay todos en el proyecto
 
   todos.forEach((todo, index) => {
@@ -72,7 +77,7 @@ export function renderTodos(todos) {
       form.addEventListener("submit", (event) => {
         event.preventDefault();        
         todo.title = inputTitle.value;
-        renderTodos(todos);
+        renderTodos();
         editTodoDialog.close();
       });
 
@@ -84,16 +89,17 @@ export function renderTodos(todos) {
       deleteTodo(todos, id);
     });
   });
-  renderAddTodoDialog(todos);
+  renderAddTodoDialog();
 }
 
-export function renderAddTodoDialog(todos) {
+export function renderAddTodoDialog() {
   const addNewTodoBtn = document.querySelector(".new-todo-btn");
   const addTodoDialog = document.querySelector("#add-todo");
   const addTodoForm = document.forms["add-todo-form"];
   const newTodoCancelBtn = document.getElementById("new-todo-cancel");
 
-  // console.log(`Se ha renderizado ${todos}`);
+  const selectedProject = myProjects.find(project => project.id === selectedProjectId);
+  const todos = selectedProject.todos;
 
   addNewTodoBtn.addEventListener("click", () => addTodoDialog.showModal());
 
