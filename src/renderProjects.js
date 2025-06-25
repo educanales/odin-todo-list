@@ -1,5 +1,7 @@
-import { myProjects, Project, activeProjectTodos } from "./object";
+import { myProjects, Project, defaultProject } from "./object";
 import { renderAddTodoDialog, renderTodos } from "./renderTodos";
+
+let selectedProjectId = defaultProject.id;
 
 export function renderProjectDialog() {
   const newProjectBtn = document.querySelector(".new-project-btn");
@@ -43,8 +45,13 @@ function addProject(e) {
 }
 
 export function changeActiveProject(projectId) {
-  const selectedProject = myProjects.find(myProject => myProject.id === projectId);
+  // const selectedProject = myProjects.find(myProject => myProject.id === projectId);
+  // console.log(selectedProjectId);
+  selectedProjectId = projectId;
+  console.log(selectedProjectId);
   // console.log(selectedProject);
   // renderAddTodoDialog(selectedProject.todos);
-  renderTodos(selectedProject.todos);
+  renderTodos();
 }
+
+export { selectedProjectId };
