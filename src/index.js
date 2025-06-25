@@ -1,9 +1,12 @@
 import "./styles.css";
-import { activeProjectTodos } from "./object.js";
+import { selectedProjectId } from "./object.js";
 import { renderAddTodoDialog, renderTodos } from "./renderTodos.js";
 import { renderProjectDialog, renderProjectList } from "./renderProjects.js";
+import { type } from "./type.js";
 
 renderProjectList();
-renderTodos(activeProjectTodos);
+renderTodos();
 renderProjectDialog();
 // renderAddTodoDialog(activeProjectTodos);
+
+// console.log(type(selectedProjectId));
