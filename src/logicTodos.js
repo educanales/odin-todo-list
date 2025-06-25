@@ -15,12 +15,12 @@ export function addTodo(event, todos) {
   description.value = "";
   // dueDate.value = "";
   // priority.value = "";
-  renderTodos(todos);
+  renderTodos();
 }
 
 export function deleteTodo(todos, id) {
   todos.splice(id, 1);
-  renderTodos(todos);
+  renderTodos();
 }
 
 export function setCompleted(todos, id) {
