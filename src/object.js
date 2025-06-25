@@ -46,9 +46,8 @@ let defaultProject = new Project("Default", 1, task);
 
 let otherProject = new Project("Personal", 2, task2);
 
-let activeProjectTodos = defaultProject.todos;
+// let activeProjectTodos = defaultProject.todos;
 
 const myProjects = [defaultProject, otherProject];
 
-
-export { defaultProject, Todo, Project, activeProjectTodos, myProjects };
+export { defaultProject, Todo, Project, myProjects };
