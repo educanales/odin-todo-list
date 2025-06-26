@@ -1,7 +1,8 @@
 import { renderTodos } from "./renderTodos";
-import { Todo } from "./object";
+import { Todo, myProjects } from "./object";
+import { selectedProjectId } from "./renderProjects";
 
-export function addTodo(event, todos) {
+export function addTodo(event) {
   event.preventDefault();
   const newTodo = new Todo(
     title.value,
@@ -9,6 +10,9 @@ export function addTodo(event, todos) {
     dueDate.value,
     priority.value
   );
+
+  const selectedProject = myProjects.find(project => project.id === selectedProjectId);
+  const todos = selectedProject.todos;
 
   todos.push(newTodo);
   title.value = "";
