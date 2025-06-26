@@ -89,7 +89,6 @@ export function renderTodos() {
       deleteTodo(todos, id);
     });
   });
-  renderAddTodoDialog();
 }
 
 export function renderAddTodoDialog() {
@@ -98,15 +97,12 @@ export function renderAddTodoDialog() {
   const addTodoForm = document.forms["add-todo-form"];
   const newTodoCancelBtn = document.getElementById("new-todo-cancel");
 
-  const selectedProject = myProjects.find(project => project.id === selectedProjectId);
-  const todos = selectedProject.todos;
-
   addNewTodoBtn.addEventListener("click", () => addTodoDialog.showModal());
 
   newTodoCancelBtn.addEventListener("click", () => addTodoDialog.close());
 
   addTodoForm.addEventListener("submit", e => {
-    addTodo(e, todos);
+    addTodo(e);
     addTodoDialog.close();
   });
 }
