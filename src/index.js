@@ -7,6 +7,6 @@ import { type } from "./type.js";
 renderProjectList();
 renderTodos();
 renderProjectDialog();
-// renderAddTodoDialog(activeProjectTodos);
+renderAddTodoDialog();
 
 // console.log(type(selectedProjectId));
