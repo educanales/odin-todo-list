@@ -38,19 +38,18 @@ function addProject(e) {
   e.preventDefault();
   const nameValue = projectname.value;
   const id = Date.now().toString();
-  const newProject = new Project(nameValue, id, []);
+  const newProject = new Project(nameValue, id, []); // Ver como crear el proyecto con el array vacio
   myProjects.push(newProject);
   projectname.value = "";
   renderProjectList();
 }
 
 export function changeActiveProject(projectId) {
-  // const selectedProject = myProjects.find(myProject => myProject.id === projectId);
-  // console.log(selectedProjectId);
+  const selectedProject = myProjects.find(myProject => myProject.id === projectId);
+  console.log(selectedProject.todos);
+  // Comentar las lineas de arriba despues de solucionar el bug
   selectedProjectId = projectId;
-  console.log(selectedProjectId);
-  // console.log(selectedProject);
-  // renderAddTodoDialog(selectedProject.todos);
+  // console.log(selectedProjectId);
   renderTodos();
 }
 
