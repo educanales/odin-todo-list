@@ -26,6 +26,7 @@ class Project {
     this.id = id;
     this.todos = [todos];
   }
+  // Probar con el array vacio y crear un metodo para agregar los todos
 }
 
 let task = new Todo(
@@ -45,8 +46,6 @@ let task2 = new Todo(
 let defaultProject = new Project("Default", 1, task);
 
 let otherProject = new Project("Personal", 2, task2);
-
-// let activeProjectTodos = defaultProject.todos;
 
 const myProjects = [defaultProject, otherProject];
 
