@@ -10,9 +10,10 @@ export function renderTodos() {
   const selectedProject = myProjects.find(project => project.id === selectedProjectId);
   const todos = selectedProject.todos;
     
-  // Agregar un condicional que muestre un mensaje si no hay todos en el proyecto
-  if (todos === "") {
-    return;
+  if (todos.length === 0) {
+    const text = document.createElement("p");
+    text.textContent = "There are no todos left";
+    todoContainer.appendChild(text);
   } else {
       todos.forEach((todo, index) => {
       let id = index;
