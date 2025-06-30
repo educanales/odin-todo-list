@@ -45,8 +45,8 @@ function addProject(e) {
 }
 
 export function changeActiveProject(projectId) {
-  const selectedProject = myProjects.find(myProject => myProject.id === projectId);
-  console.log(selectedProject.todos);
+  // const selectedProject = myProjects.find(myProject => myProject.id === projectId);
+  // console.log(selectedProject.todos);
   // Comentar las lineas de arriba despues de solucionar el bug
   selectedProjectId = projectId;
   // console.log(selectedProjectId);
