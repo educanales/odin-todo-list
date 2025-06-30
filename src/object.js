@@ -7,16 +7,9 @@ class Todo {
     this.completed = false;
     // this.list = list;
   }
+  
   setCompleted(value) {
     this.completed = value;
-  }
-
-  logTitle() {
-    console.log(this.title);
-  }
-
-  logCompleted() {
-    console.log(this.completed);
   }
 }
 
@@ -24,9 +17,12 @@ class Project {
   constructor(name, id, todos) {
     this.name = name;
     this.id = id;
-    this.todos = [todos];
+    this.todos = [];
   }
-  // Probar con el array vacio y crear un metodo para agregar los todos
+
+  addTodo(todo) {
+    this.todos.push(todo);
+  }
 }
 
 let task = new Todo(
@@ -36,16 +32,10 @@ let task = new Todo(
   "low"
 );
 
-let task2 = new Todo(
-  "Yoga",
-  "10 minutos minimo",
-  "2025-06-23",
-  "medium"
-);
+let defaultProject = new Project("Default", 1);
+let otherProject = new Project("Personal", 2);
 
-let defaultProject = new Project("Default", 1, task);
-
-let otherProject = new Project("Personal", 2, task2);
+defaultProject.addTodo(task);
 
 const myProjects = [defaultProject, otherProject];
 
