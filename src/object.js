@@ -25,15 +25,15 @@ class Project {
   }
 }
 
-let task = new Todo(
+const task = new Todo(
   "Lavar ropa",
   "La de ciclismo y la de trabajo",
   "2024-12-15",
   "low"
 );
 
-let defaultProject = new Project("Default", 1);
-let otherProject = new Project("Personal", 2);
+const defaultProject = new Project("Default", 1);
+const otherProject = new Project("Personal", 2);
 
 defaultProject.addTodo(task);
 
