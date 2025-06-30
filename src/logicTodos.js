@@ -1,5 +1,5 @@
 import { renderTodos } from "./renderTodos";
-import { Todo, myProjects } from "./object";
+import { Todo, myProjects, saveProject } from "./object";
 import { selectedProjectId } from "./renderProjects";
 
 export function addTodo(event) {
@@ -12,24 +12,25 @@ export function addTodo(event) {
   );
 
   const selectedProject = myProjects.find(project => project.id === selectedProjectId);
-
-  selectedProject.addTodo(newTodo);
+  // selectedProject.addTodo(newTodo); // No funciona
+  console.log(selectedProject)
+  selectedProject.todos.push(newTodo);
   title.value = "";
   description.value = "";
   // dueDate.value = "";
   // priority.value = "";
+  saveProject();
   renderTodos();
 }
 
 export function deleteTodo(todos, id) {
   todos.splice(id, 1);
+  saveProject();
   renderTodos();
 }
 
-export function setCompleted(todos, id) {
-  todos.map((todo) => {
-    if (todo.id === id) {
-      todo.completed = true;
-    }
-  })
+export function setCompleted(todo) {
+  todo.completed = !todo.completed;
+  // console.log(todo);
+  saveProject();
 }
