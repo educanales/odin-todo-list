@@ -84,6 +84,22 @@
             <label for="edited-title">Title</label>
             <input type="text" name="edited-title" id="edited-title">
           </div>
+          <div class="form-row">
+            <label for="edited-description">Description:</label>
+            <input type="text" name="edited-description" id="edited-description">
+          </div>
+          <div class="form-row">
+            <label for="edited-dueDate">Due Date:</label>
+            <input type="date" name="edited-dueDate" id="edited-dueDate">
+          </div>
+          <div class="form-row">
+            <label for="edited-priority">Priority: </label>
+            <select name="edited-priority" id="edited-priority">
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
           <div>
             <button id="edit-todo-cancel" type="reset">Cancel</button>
             <button id="edit-todo-save" type="submit">Save</button>
