@@ -61,10 +61,15 @@ export function renderTodos() {
       editBtn.textContent = "Edit";
       deleteBtn.textContent = "Delete";
 
+      if (todo.completed === true) {
+        checkbox.toggleAttribute("checked");
+        label.classList.toggle("checked");
+      }
+
       checkbox.addEventListener("click", () => {
         checkbox.toggleAttribute("checked");
         label.classList.toggle("checked");
-        setCompleted(todos, id);
+        setCompleted(todo, id);
       });
 
       editBtn.addEventListener("click", () => {
