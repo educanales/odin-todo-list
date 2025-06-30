@@ -12,9 +12,8 @@ export function addTodo(event) {
   );
 
   const selectedProject = myProjects.find(project => project.id === selectedProjectId);
-  const todos = selectedProject.todos;
 
-  todos.push(newTodo);
+  selectedProject.addTodo(newTodo);
   title.value = "";
   description.value = "";
   // dueDate.value = "";
