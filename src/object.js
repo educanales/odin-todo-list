@@ -8,13 +8,13 @@ class Todo {
     // this.list = list;
   }
   
-  setCompleted(value) {
-    this.completed = value;
+  changeCompleted() {
+    this.completed = !this.completed;
   }
 }
 
 class Project {
-  constructor(name, id, todos) {
+  constructor(name, id) {
     this.name = name;
     this.id = id;
     this.todos = [];
@@ -37,6 +37,12 @@ const otherProject = new Project("Personal", 2);
 
 defaultProject.addTodo(task);
 
-const myProjects = [defaultProject, otherProject];
+const LOCAL_STORAGE_PROJECTS_LIST_KEY = "projects.list"
 
-export { defaultProject, Todo, Project, myProjects };
+let myProjects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECTS_LIST_KEY)) || [defaultProject, otherProject];
+
+function saveProject() {
+  localStorage.setItem(LOCAL_STORAGE_PROJECTS_LIST_KEY, JSON.stringify(myProjects));
+}
+
+export { defaultProject, Todo, Project, myProjects, saveProject };
