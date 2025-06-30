@@ -1,4 +1,4 @@
-import { myProjects, Project, defaultProject } from "./object";
+import { myProjects, Project, defaultProject, saveProject } from "./object";
 import { renderTodos } from "./renderTodos";
 
 let selectedProjectId = defaultProject.id;
@@ -38,15 +38,20 @@ function addProject(e) {
   e.preventDefault();
   const nameValue = projectname.value;
   const id = Date.now().toString();
-  const newProject = new Project(nameValue, id, []);
+  const newProject = new Project(nameValue, id);
   myProjects.push(newProject);
   projectname.value = "";
+  changeActiveProject(id);
+  saveProject();
   renderProjectList();
 }
 
 export function changeActiveProject(projectId) {
+
+  // const selectedProject = myProjects.find(project => project.id === selectedProjectId);
+  // console.log(selectedProject);
+
   selectedProjectId = projectId;
-  // console.log(selectedProjectId);
   renderTodos();
 }
 
