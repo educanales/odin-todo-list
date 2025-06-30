@@ -1,5 +1,5 @@
 import { myProjects, Project, defaultProject } from "./object";
-import { renderAddTodoDialog, renderTodos } from "./renderTodos";
+import { renderTodos } from "./renderTodos";
 
 let selectedProjectId = defaultProject.id;
 
@@ -38,16 +38,13 @@ function addProject(e) {
   e.preventDefault();
   const nameValue = projectname.value;
   const id = Date.now().toString();
-  const newProject = new Project(nameValue, id, []); // Ver como crear el proyecto con el array vacio
+  const newProject = new Project(nameValue, id, []);
   myProjects.push(newProject);
   projectname.value = "";
   renderProjectList();
 }
 
 export function changeActiveProject(projectId) {
-  // const selectedProject = myProjects.find(myProject => myProject.id === projectId);
-  // console.log(selectedProject.todos);
-  // Comentar las lineas de arriba despues de solucionar el bug
   selectedProjectId = projectId;
   // console.log(selectedProjectId);
   renderTodos();
