@@ -84,8 +84,22 @@ aside {
 
 .projects-list > li {
   padding: 0.5rem 1rem;
-  border: 1px solid gray;
   border-radius: 5px;
+  border: 1px solid white;
+}
+
+.projects-list > li:hover {
+  cursor: pointer;
+  border: 1px solid black;
+  /* background-color: grey; */
+}
+
+.projects-list > li:active {
+  transform: translateY(1px);
+}
+
+.active-project {
+  list-style: circle;
 }
 
 .todo-container {
