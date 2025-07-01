@@ -27,9 +27,11 @@ export function renderProjectList() {
 
   myProjects.forEach((project) => {    
     const li = document.createElement("li");
-    li.textContent = project.name;
+    li.textContent = project.name;    
+    if (project.id === selectedProjectId) {
+      li.classList.add("active-project");
+    }
     projectList.appendChild(li);
-
     li.addEventListener("click", () => changeActiveProject(project.id));
   });
 }
@@ -52,6 +54,7 @@ export function changeActiveProject(projectId) {
   // console.log(selectedProject);
 
   selectedProjectId = projectId;
+  renderProjectList();
   renderTodos();
 }
 
