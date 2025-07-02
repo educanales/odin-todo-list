@@ -33,6 +33,19 @@ export function renderProjectList() {
     }
     projectList.appendChild(li);
     li.addEventListener("click", () => changeActiveProject(project.id));
+
+    const btnContainer = document.createElement("div");
+    btnContainer.className = "btn-container";
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    
+    li.appendChild(btnContainer);
+    btnContainer.append(editBtn, deleteBtn);
+
+
+    
   });
 }
 
