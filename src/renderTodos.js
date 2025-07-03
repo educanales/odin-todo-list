@@ -5,11 +5,13 @@ import { selectedProjectId } from "./renderProjects";
 
 export function renderTodos() {
   const todoContainer = document.querySelector(".todo-container");
-  todoContainer.replaceChildren();
+  todoContainer.replaceChildren();  
 
   const selectedProject = myProjects.find(project => project.id === selectedProjectId);
   const todos = selectedProject.todos;
-    
+  
+  console.log(todos);
+
   if (todos.length === 0) {
     const text = document.createElement("p");
     text.textContent = "There are no todos left";
@@ -69,9 +71,10 @@ export function renderTodos() {
         checkbox.addEventListener("click", () => {
           checkbox.toggleAttribute("checked");
           label.classList.toggle("checked");
-          setCompleted(todo, id);
+          setCompleted(todo);
         });
 
+        // No funciona bien, duplica lo editado en todos los todos que se ha apretado el boton.
         editBtn.addEventListener("click", () => {
           const editTodoDialog = document.querySelector("#edit-todo-dialog");
           const cancelBtn = document.querySelector("#edit-todo-cancel");
