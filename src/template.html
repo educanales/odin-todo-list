@@ -105,7 +105,23 @@
             <button id="edit-todo-save" type="submit">Save</button>
           </div>
         </form>
-      </dialog>      
+      </dialog>
+
+      <dialog id="edit-project-dialog">
+        <div class="dialog-title">
+          <h3>Edit Todo</h3>
+        </div>
+        <form method="dialog" name="edit-project-form">
+          <div class="form-row">
+            <label for="edited-name">Project Name</label>
+            <input type="text" name="edited-name" id="edited-name">
+          </div>
+          <div>
+            <button id="edit-project-cancel" type="reset">Cancel</button>
+            <button id="edit-project-save" type="submit">Save</button>
+          </div>
+        </form>
+      </dialog>
      
     </main>
   </body>
