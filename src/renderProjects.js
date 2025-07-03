@@ -25,13 +25,14 @@ export function renderProjectList() {
   const projectList = document.querySelector(".projects-list");  
   projectList.replaceChildren();
 
-  myProjects.forEach((project) => {    
+  myProjects.forEach((project) => {
     const li = document.createElement("li");
-    li.textContent = project.name;    
+    li.textContent = project.name;
     if (project.id === selectedProjectId) {
       li.classList.add("active-project");
     }
     projectList.appendChild(li);
+    
     li.addEventListener("click", () => changeActiveProject(project.id));
 
     const btnContainer = document.createElement("div");
@@ -43,6 +44,33 @@ export function renderProjectList() {
     
     li.appendChild(btnContainer);
     btnContainer.append(editBtn, deleteBtn);
+
+    // Bug que edita el nombre de todos los proyectos que se han editado
+    editBtn.addEventListener("click", () => {
+      console.log(project.id);
+
+      const editProjectDialog = document.querySelector("#edit-project-dialog");
+      const cancelBtn = document.querySelector("#edit-project-cancel");
+      const saveBtn = document.querySelector("#edit-project-save");
+      const form = document.forms["edit-project-form"];
+
+      const inputName = document.querySelector("#edited-name");
+      inputName.value = project.name;
+
+      editProjectDialog.showModal();
+
+      // if (selectedProjectId === project.id) {}
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        project.name = inputName.value;
+        // saveProject();
+        renderProjectList();
+        editProjectDialog.close();
+      });
+
+      // saveBtn.addEventListener("click", () => editProjectDialog.close());
+      cancelBtn.addEventListener("click", () => editProjectDialog.close());
+    });
 
 
     
