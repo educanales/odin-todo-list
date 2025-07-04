@@ -25,7 +25,7 @@ export function renderProjectList() {
   const projectList = document.querySelector(".projects-list");  
   projectList.replaceChildren();
 
-  myProjects.forEach((project) => {
+  myProjects.forEach((project, index) => {
     const li = document.createElement("li");
     li.textContent = project.name;
     if (project.id === selectedProjectId) {
@@ -59,10 +59,11 @@ export function renderProjectList() {
 
       editProjectDialog.showModal();
 
-      // if (selectedProjectId === project.id) {}
       form.addEventListener("submit", (event) => {
         event.preventDefault();
-        project.name = inputName.value;
+        if (myProjects[index].id === project.id) {
+          myProjects[index].name = inputName.value;
+        }
         // saveProject();
         renderProjectList();
         editProjectDialog.close();
