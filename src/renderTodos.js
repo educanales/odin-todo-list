@@ -10,7 +10,7 @@ export function renderTodos() {
   const selectedProject = myProjects.find(project => project.id === selectedProjectId);
   const todos = selectedProject.todos;
   
-  console.log(todos);
+  // console.log(todos);
 
   if (todos.length === 0) {
     const text = document.createElement("p");
