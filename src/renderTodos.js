@@ -1,5 +1,5 @@
 import { addTodo, deleteTodo, setCompleted } from "./logicTodos";
-import { myProjects } from "./object";
+import { myProjects, saveProject } from "./object";
 import { selectedProjectId } from "./renderProjects";
 
 
@@ -10,8 +10,6 @@ export function renderTodos() {
   const selectedProject = myProjects.find(project => project.id === selectedProjectId);
   const todos = selectedProject.todos;
   
-  // console.log(todos);
-
   if (todos.length === 0) {
     const text = document.createElement("p");
     text.textContent = "There are no todos left";
@@ -74,40 +72,43 @@ export function renderTodos() {
           setCompleted(todo);
         });
 
-        // No funciona bien, duplica lo editado en todos los todos que se ha apretado el boton.
-        editBtn.addEventListener("click", () => {
-          const editTodoDialog = document.querySelector("#edit-todo-dialog");
-          const cancelBtn = document.querySelector("#edit-todo-cancel");
-          const saveBtn = document.getElementById("edit-todo-save");
-          const form = document.forms["edit-todo-form"];
+        const editTodoDialog = document.querySelector("#edit-todo-dialog");
+        const cancelBtn = document.querySelector("#edit-todo-cancel");
+        const form = document.forms["edit-todo-form"];
+        const todoIdInput = document.getElementById("todo-id");
+        const inputTitle = document.getElementById("edited-title");
+        const inputDescription = document.getElementById("edited-description");
+        const inputDueDate = document.getElementById("edited-dueDate");
+        const inputPriority = document.getElementById("edited-priority");
 
-          const inputTitle = document.querySelector("#edited-title");
-          inputTitle.value = todo.title;
+        editBtn.addEventListener("click", () => openDialog(todo));
 
-          const inputDescription = document.querySelector("#edited-description");
-          inputDescription.value = todo.description;
-
-          const inputDueDate = document.querySelector("#edited-dueDate");
-          inputDueDate.value = todo.dueDate;
-
-          const inputPriority = document.querySelector("#edited-priority");
-          inputPriority.value = todo.priority;
-
+        function openDialog(myTodo) {
+          inputTitle.value = myTodo.title;
+          inputDescription.value = myTodo.description;
+          inputDueDate.value = myTodo.dueDate;
+          inputPriority.value = myTodo.priority;
+          todoIdInput.value = myTodo.id;
           editTodoDialog.showModal();
+        }
 
-          form.addEventListener("submit", (event) => {
-            event.preventDefault();        
-            todo.title = inputTitle.value;
-            todo.description = inputDescription.value;
-            todo.dueDate = inputDueDate.value;
-            todo.priority = inputPriority.value;
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const selectedId = parseInt(todoIdInput.value);
+          const foundTodo = todos.find(item => item.id === selectedId);
+          
+          if (foundTodo) {
+            foundTodo.title = inputTitle.value;
+            foundTodo.description = inputDescription.value;
+            foundTodo.dueDate = inputDueDate.value;
+            foundTodo.priority = inputPriority.value;
+            saveProject();
             renderTodos();
-            editTodoDialog.close();
-          });
-
-          saveBtn.addEventListener("click", () => editTodoDialog.close());
-          cancelBtn.addEventListener("click", () => editTodoDialog.close());
+          }
+          editTodoDialog.close();
         });
+
+        cancelBtn.addEventListener("click", () => editTodoDialog.close());
 
         deleteBtn.addEventListener("click", () => {
           deleteTodo(todos, id);
