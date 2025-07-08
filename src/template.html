@@ -80,6 +80,7 @@
           <h3>Edit Todo</h3>
         </div>
         <form method="dialog" name="edit-todo-form">
+          <input type="hidden" name="todo-id" id="todo-id">
           <div class="form-row">
             <label for="edited-title">Title</label>
             <input type="text" name="edited-title" id="edited-title">
@@ -115,6 +116,7 @@
           <div class="form-row">
             <label for="edited-name">Project Name</label>
             <input type="text" name="edited-name" id="edited-name">
+            <input type="hidden" name="project-id" id="project-id">
           </div>
           <div>
             <button id="edit-project-cancel" type="reset">Cancel</button>
