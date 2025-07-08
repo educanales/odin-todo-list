@@ -3,7 +3,7 @@ import { renderTodos } from "./renderTodos";
 
 let selectedProjectId = defaultProject.id;
 
-export function renderProjectDialog() {
+export function renderNewProjectDialog() {
   const newProjectBtn = document.querySelector(".new-project-btn");
   const newProjectDialog = document.getElementById("add-project-dialog");
   const newProjectForm = document.forms["add-project-form"];
@@ -25,63 +25,65 @@ export function renderProjectList() {
   const projectList = document.querySelector(".projects-list");  
   projectList.replaceChildren();
 
-  myProjects.forEach((project, index) => {
+  myProjects.forEach((project) => {
     const li = document.createElement("li");
     li.textContent = project.name;
+
     if (project.id === selectedProjectId) {
       li.classList.add("active-project");
     }
+
     projectList.appendChild(li);
     
     li.addEventListener("click", () => changeActiveProject(project.id));
 
-    const btnContainer = document.createElement("div");
-    btnContainer.className = "btn-container";
-    const editBtn = document.createElement("button");
-    editBtn.textContent = "Edit";
+    const btnContainer = document.createElement("div");    
+    const editBtn = document.createElement("button");    
     const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "Delete";
+    const editProjectDialog = document.querySelector("#edit-project-dialog");
+    const cancelBtn = document.querySelector("#edit-project-cancel");
+    const projectForm = document.forms["edit-project-form"];
+    const inputName = document.getElementById("edited-name");
+    const projectIdInput = document.getElementById("project-id");
+
+    btnContainer.className = "btn-container";
+    editBtn.textContent = "Edit";
+    deleteBtn.textContent = "Delete";    
     
     li.appendChild(btnContainer);
     btnContainer.append(editBtn, deleteBtn);
 
-    // Bug que edita el nombre de todos los proyectos que se han editado
-    editBtn.addEventListener("click", () => {
-      console.log(project.id);
+    editBtn.addEventListener("click", () => openDialog(project.name, project.id));
 
-      const editProjectDialog = document.querySelector("#edit-project-dialog");
-      const cancelBtn = document.querySelector("#edit-project-cancel");
-      const saveBtn = document.querySelector("#edit-project-save");
-      const form = document.forms["edit-project-form"];
-
-      const inputName = document.querySelector("#edited-name");
-      inputName.value = project.name;
-
+    function openDialog(name, id) {
+      inputName.value = name;
+      projectIdInput.value = id;
       editProjectDialog.showModal();
+    }
 
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        if (myProjects[index].id === project.id) {
-          myProjects[index].name = inputName.value;
-        }
-        // saveProject();
+    projectForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const id = parseInt(projectIdInput.value);
+      const newName = inputName.value;
+      const foundProject = myProjects.find(item => item.id === id);
+
+      if (foundProject) {
+        foundProject.name = newName;
+        saveProject();
         renderProjectList();
-        editProjectDialog.close();
-      });
+      }
 
-      // saveBtn.addEventListener("click", () => editProjectDialog.close());
-      cancelBtn.addEventListener("click", () => editProjectDialog.close());
+      editProjectDialog.close();
     });
 
-
-    
+    cancelBtn.addEventListener("click", () => editProjectDialog.close());    
   });
 }
 
 function addProject(e) {
   e.preventDefault();
   const nameValue = projectname.value;
-  const id = Date.now().toString();
+  const id = Date.now();
   const newProject = new Project(nameValue, id);
   myProjects.push(newProject);
   projectname.value = "";
@@ -91,10 +93,6 @@ function addProject(e) {
 }
 
 export function changeActiveProject(projectId) {
-
-  // const selectedProject = myProjects.find(project => project.id === selectedProjectId);
-  // console.log(selectedProject);
-
   selectedProjectId = projectId;
   renderProjectList();
   renderTodos();
