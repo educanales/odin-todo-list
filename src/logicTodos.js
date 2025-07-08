@@ -8,7 +8,8 @@ export function addTodo(event) {
     title.value,
     description.value,
     dueDate.value,
-    priority.value
+    priority.value,
+    Date.now()
   );
 
   const selectedProject = myProjects.find(project => project.id === selectedProjectId);
