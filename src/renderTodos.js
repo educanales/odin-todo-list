@@ -5,10 +5,16 @@ import { selectedProjectId } from "./renderProjects";
 
 export function renderTodos() {
   const todoContainer = document.querySelector(".todo-container");
-  todoContainer.replaceChildren();  
+  todoContainer.replaceChildren();
 
+  if (myProjects.length === 0) {
+    const text = document.createElement("p");
+    text.textContent = "There are no projects";
+    todoContainer.appendChild(text);
+    return;
+  }
   const selectedProject = myProjects.find(project => project.id === selectedProjectId);
-  const todos = selectedProject.todos;
+  const todos = selectedProject.todos;  
   
   if (todos.length === 0) {
     const text = document.createElement("p");
