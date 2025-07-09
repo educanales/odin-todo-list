@@ -25,18 +25,9 @@ export function renderProjectList() {
   const projectList = document.querySelector(".projects-list");  
   projectList.replaceChildren();
 
-  myProjects.forEach((project) => {
+  myProjects.forEach((project, index) => {
     const li = document.createElement("li");
-    li.textContent = project.name;
-
-    if (project.id === selectedProjectId) {
-      li.classList.add("active-project");
-    }
-
-    projectList.appendChild(li);
-    
-    li.addEventListener("click", () => changeActiveProject(project.id));
-
+    const linkText = document.createElement("a");
     const btnContainer = document.createElement("div");    
     const editBtn = document.createElement("button");    
     const deleteBtn = document.createElement("button");
@@ -45,13 +36,24 @@ export function renderProjectList() {
     const projectForm = document.forms["edit-project-form"];
     const inputName = document.getElementById("edited-name");
     const projectIdInput = document.getElementById("project-id");
+    const deleteProjectDialog = document.getElementById("delete-project-dialog");
+    const deleteProjectBtn = document.getElementById("delete-project-btn");
+    const cancelDeleteProjectBtn = document.getElementById("cancel-delete");
 
+    linkText.textContent = project.name;
     btnContainer.className = "btn-container";
     editBtn.textContent = "Edit";
-    deleteBtn.textContent = "Delete";    
-    
-    li.appendChild(btnContainer);
+    deleteBtn.textContent = "Delete";
+
+    if (project.id === selectedProjectId) {
+      li.classList.add("active-project");
+    }    
+
+    projectList.appendChild(li);
+    li.append(linkText, btnContainer);
     btnContainer.append(editBtn, deleteBtn);
+
+    linkText.addEventListener("click", () => changeActiveProject(project.id));
 
     editBtn.addEventListener("click", () => openDialog(project.name, project.id));
 
@@ -76,8 +78,35 @@ export function renderProjectList() {
       editProjectDialog.close();
     });
 
-    cancelBtn.addEventListener("click", () => editProjectDialog.close());    
+    let deleteIndex = null;
+
+    cancelBtn.addEventListener("click", () => editProjectDialog.close());
+
+    deleteBtn.addEventListener("click", () => {
+      if (project.id === selectedProjectId) {
+        const defaultId = myProjects[0].id;
+        changeActiveProject(defaultId);
+      }
+      deleteIndex = index;
+      deleteProject(deleteIndex);
+      // deleteProjectDialog.showModal();
+    });
+
+    cancelDeleteProjectBtn.addEventListener("click", () => deleteProjectDialog.close());
+
+    // deleteProjectBtn.addEventListener("click", () => {
+    //   deleteProjectDialog.close();
+    //   console.log(project.id);         
+    // });
   });
+}
+
+function deleteProject(index) {  
+  console.log(index);  
+  // const newProjectList = myProjects.filter(item => item.id === id)
+  myProjects.splice(index, 1);  
+  renderProjectList();
+  renderTodos();
 }
 
 function addProject(e) {
