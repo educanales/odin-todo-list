@@ -110,7 +110,8 @@ export function renderProjectList() {
 
 function deleteProject(index) {  
   // const newProjectList = myProjects.filter(item => item.id === id)
-  myProjects.splice(index, 1);  
+  myProjects.splice(index, 1);
+  saveProject();
   renderProjectList();
 }
 
